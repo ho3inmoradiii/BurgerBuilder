@@ -4,13 +4,15 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
 
-    let transformedIngredient = Object.keys(props.ingredints).map(w => {
-       return [...Array(props.ingredints[w])].map((_,i)=>{
-          return <BurgerIngredient type={w} key={w+i} />;
-       });
-    }).reduce((arr,el) => {
-        return arr.concat(el)
-        },[]);
+    let transformedIngredient = Object.keys( props.ingredients )
+        .map( igKey => {
+            return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+                return <BurgerIngredient key={igKey + i} type={igKey} />;
+            } );
+        } )
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
 
     if (transformedIngredient.length === 0){
         transformedIngredient = <p>یه چیزی بخر از گشنگی نمیری</p>
